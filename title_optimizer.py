@@ -88,13 +88,10 @@ def optimize_title(client, title, description, retry_count=0):
     config = load_config()
     logging.info(f'Optimizing title: "{title}"')
     
-    prompt = f"""Given this original title: "{title}" 
-    and description: "{description}"
-    Generate a more engaging title that is:
-    - Clear and concise (max 10 words)
-    - Engaging but not clickbait
-    - Factually accurate
-    Return only the new title, nothing else."""
+    prompt = config['ai']['prompt_template'].format(
+        title=title,
+        description=description
+    )
 
     try:
         response = client.chat.complete(
@@ -106,8 +103,17 @@ def optimize_title(client, title, description, retry_count=0):
         return optimized
     except Exception as e:
         if "rate limit" in str(e).lower() and retry_count < config['optimization']['max_retries']:
-            logging.warning(f'Rate limit hit, retrying (attempt {retry_count + 1}/{config["optimization"]["max_retries"]})')
-            time.sleep(config['optimization']['retry_delay'])
+            # Calculate delay with exponential backoff
+            if config['optimization'].get('exponential_backoff', False):
+                delay = min(
+                    config['optimization']['retry_delay'] * (2 ** retry_count),
+                    config['optimization'].get('max_backoff', 30)
+                )
+            else:
+                delay = config['optimization']['retry_delay']
+            
+            logging.warning(f'Rate limit hit, retrying in {delay}s (attempt {retry_count + 1}/{config["optimization"]["max_retries"]})')
+            time.sleep(delay)
             return optimize_title(client, title, description, retry_count + 1)
         logging.error(f'Error optimizing title: {str(e)}')
         raise e
@@ -162,8 +168,11 @@ def main():
                 continue
                 
             try:
+                # Increase initial delay between requests
                 if i > 1:
-                    time.sleep(config['optimization']['request_delay'])
+                    delay = config['optimization']['request_delay']
+                    logging.info(f'Waiting {delay}s before next request')
+                    time.sleep(delay)
                     
                 optimized_title = optimize_title(client, original_title, description)
                 print(f"Optimized (new): {optimized_title}")
