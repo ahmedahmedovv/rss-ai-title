@@ -14,6 +14,19 @@ def load_articles():
     with open('data.json', 'r', encoding='utf-8') as f:
         return json.load(f)
 
+def load_existing_optimizations():
+    """Load existing optimized titles if they exist"""
+    output_path = Path('data') / 'optimized_titles.json'
+    if output_path.exists():
+        with open(output_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+            # Create a dictionary of original_title -> optimized_article for easy lookup
+            return {
+                article['original_title']: article 
+                for article in data.get('articles', [])
+            }
+    return {}
+
 def save_optimized_titles(articles):
     """Save optimized titles to data/optimized_titles.json"""
     # Create data directory if it doesn't exist
@@ -65,8 +78,9 @@ def main():
     # Initialize Mistral client with API key
     client = Mistral(api_key=api_key)
     
-    # Load articles
+    # Load articles and existing optimizations
     articles = load_articles()
+    existing_optimizations = load_existing_optimizations()
     
     print("\n=== Title Optimization Tool ===\n")
     
@@ -79,13 +93,21 @@ def main():
         print(f"\nArticle {i}:")
         print(f"Original: {original_title}")
         
+        # Check if we already have an optimization for this title
+        if original_title in existing_optimizations:
+            existing_article = existing_optimizations[original_title]
+            print(f"Optimized (existing): {existing_article['optimized_title']}")
+            print("-" * 50)
+            optimized_articles.append(existing_article)
+            continue
+            
         try:
             # Add a small delay between requests
             if i > 1:
                 time.sleep(1)
                 
             optimized_title = optimize_title(client, original_title, description)
-            print(f"Optimized: {optimized_title}")
+            print(f"Optimized (new): {optimized_title}")
             print("-" * 50)
             
             # Store optimized article data
