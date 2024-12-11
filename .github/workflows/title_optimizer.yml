@@ -5,6 +5,7 @@ on:
     - cron: '0 */2 * * *'  # Runs every 2 hours
   push:
     branches: [ main ]  # Triggers on commits to main branch
+  workflow_dispatch:    # Enables manual trigger from GitHub UI
 
 jobs:
   optimize:
