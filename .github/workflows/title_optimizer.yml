@@ -2,7 +2,7 @@ name: Title Optimizer
 
 on:
   schedule:
-    - cron: '0 */2 * * *'  # Runs every 2 hours
+    - cron: '*/20 * * * *'  # Runs every 20 minutes
   push:
     branches: [ main ]  # Triggers on commits to main branch
   workflow_dispatch:    # Enables manual trigger from GitHub UI
