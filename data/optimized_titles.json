@@ -1,5 +1,5 @@
 {
-  "optimization_timestamp": "2024-12-13T01:59:28.944327",
+  "optimization_timestamp": "2024-12-13T03:08:44.874133",
   "articles": [
     {
       "original_title": "Iconic Polish teen novel published in English",
@@ -15168,6 +15168,38 @@
       "link": "https://warsawnow.pl/swiateczna-warszawa-koncerty-i-spektakle/",
       "published": "Fri, 13 Dec 2024 00:46:39 +0000",
       "optimized_at": "2024-12-13T01:59:28.928739"
+    },
+    {
+      "original_title": "500 million for Kiev. Powerful support from overseas",
+      "optimized_title": "White House Announces $500M Military Aid for Ukraine",
+      "description": "The White House announced a new package of military support for Ukraine on Thursday, including additional ammunition for air defense systems, drones and armored vehicles.",
+      "link": "https://wiadomosci.wp.pl/500-milionow-dla-kijowa-potezne-wsparcie-zza-oceanu-7102683842398848a",
+      "published": "Fri, 13 Dec 2024 02:57:16 +0100",
+      "optimized_at": "2024-12-13T03:08:31.767647"
+    },
+    {
+      "original_title": "A year of disappointments in real estate and construction",
+      "optimized_title": "Real Estate & Construction: Expert Calls for More Meetings and Working Groups",
+      "description": "It would be useful to have more meetings with experts and establish permanent working groups concerning, for example, construction law and the act on spatial planning and development – ​​says an expert from the Real Estate Committee of the Polish Chamber of Commerce.",
+      "link": "https://www.rp.pl/nieruchomosci/art41574671-rok-rozczarowan-w-dziedzinie-nieruchomosci-i-budownictwa",
+      "published": "Fri, 13 Dec 2024 03:03:00 +0100",
+      "optimized_at": "2024-12-13T03:08:34.929776"
+    },
+    {
+      "original_title": "Real Estate and Taxes: A Year of Government Work",
+      "optimized_title": "Navigating Real Estate Tax Challenges: A Year in Review",
+      "description": "Three tax challenges. The market is waiting for resolutions.",
+      "link": "https://www.rp.pl/nieruchomosci/art41574831-nieruchomosci-i-podatki-rok-pracy-rzadu",
+      "published": "Fri, 13 Dec 2024 03:00:00 +0100",
+      "optimized_at": "2024-12-13T03:08:40.286713"
+    },
+    {
+      "original_title": "Key changes to building regulations: A year after the change of government",
+      "optimized_title": "One Year After Government Shift: Crucial Building Regulation Changes Assessed",
+      "description": "This year we have seen several key changes for the construction and real estate industry. Despite this, we feel unsatisfied, because many regulations still require urgent improvement, the expert assesses.",
+      "link": "https://www.rp.pl/nieruchomosci/art41574581-kluczowe-zmiany-w-przepisach-budowlanych-rok-po-zmianie-rzadow",
+      "published": "Fri, 13 Dec 2024 03:00:00 +0100",
+      "optimized_at": "2024-12-13T03:08:44.864194"
     }
   ]
 }
